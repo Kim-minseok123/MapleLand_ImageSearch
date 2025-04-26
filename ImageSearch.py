@@ -76,7 +76,7 @@ class App(tk.Tk):
         ttk.Button(bar, text="Check", command=self.check_match).pack(side="left", padx=4)
         ttk.Button(bar, text="Exit", command=self.destroy).pack(side="left", padx=4)
 
-        ttk.Checkbutton(self, text="Auto-resize after BG removal", variable=self.auto_resize).pack()
+        #ttk.Checkbutton(self, text="Auto-resize after BG removal", variable=self.auto_resize).pack()
         ttk.Separator(self, orient="horizontal").pack(fill="x", pady=6)
         ttk.Label(self, text="Best match filename").pack()
         ttk.Label(self, textvariable=self.result_var,
@@ -84,14 +84,11 @@ class App(tk.Tk):
                   foreground="#006400").pack()
 
     def _bind_keys(self):
-        # bind 'a' key to check_match
         def on_key_a(event):
             self.check_match()
             return "break"
 
-        # 기존 self.bind_all("<space>", on_space) 를 아래로 교체
         self.bind_all("<a>", on_key_a)
-        # ESC 는 그대로 유지
         self.bind_all("<Escape>", lambda e: self.destroy())
 
 
@@ -157,7 +154,7 @@ class App(tk.Tk):
                     pil_no_bg = pil_no_bg.crop(bbox).resize(pil.size, Image.LANCZOS)
 
             debug_path = DEBUG_DIR / f"capture_{int(time.time())}.png"
-            pil_no_bg.save(debug_path)
+            #pil_no_bg.save(debug_path)
 
             target_hash = compute_phash(pil_no_bg)
             best_name, dist = best_match(target_hash, LIB_HASHES)
