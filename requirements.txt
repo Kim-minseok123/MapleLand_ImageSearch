@@ -3,3 +3,4 @@ streamlit-paste-button
 pillow
 imagehash
 rembg
+onnxruntime
